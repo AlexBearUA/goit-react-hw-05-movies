@@ -1,22 +1,46 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import moviesAPI from '../services/movies-api';
 
 const Home = () => {
+  const location = useLocation();
+  const [trendMovies, setTrendMovies] = useState([]);
+
   useEffect(() => {
-    //   запрос за фильмами в тренде
+    moviesAPI
+      .getTrendMovies()
+      .then(({ data: { results: movies } }) =>
+        setTrendMovies(normalaziedMovies(movies))
+      )
+      .catch(error => console.log(error));
   }, []);
+
+  const normalaziedMovies = movies => {
+    return movies.map(({ id, title, poster_path }) => ({
+      id,
+      title,
+      poster_path,
+    }));
+  };
+
   return (
     <div>
       <p>Cписок фильмов в тренде</p>
-      <div>
-        {['film-1', 'film-2', 'film-3', 'film-4', 'film-5'].map(film => {
+      <ul>
+        {trendMovies.map(({ id, title, poster_path }) => {
           return (
-            <Link key={film} to={`/movies/${film}`}>
-              {film}
-            </Link>
+            <li key={id}>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                  alt={title}
+                />
+                <p>{title}</p>
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

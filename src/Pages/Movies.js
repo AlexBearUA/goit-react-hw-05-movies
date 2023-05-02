@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Movies = () => {
+  const location = useLocation();
   useEffect(() => {
     //   запрос за фильмами по поиску
   }, []);
@@ -14,15 +15,17 @@ const Movies = () => {
       </form>
 
       <p>Cписок фильмов по поиску</p>
-      <div>
+      <ul>
         {['film-1', 'film-2', 'film-3', 'film-4', 'film-5'].map(film => {
           return (
-            <Link key={film} to={`${film}`}>
-              {film}
-            </Link>
+            <li key={film}>
+              <Link to={`${film}`} state={{ from: location }}>
+                {film}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </>
   );
 };

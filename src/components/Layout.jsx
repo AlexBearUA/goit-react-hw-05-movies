@@ -1,18 +1,25 @@
 import { NavLink, Outlet } from 'react-router-dom';
-export const Layout = () => {
+import { Suspense } from 'react';
+const Layout = () => {
   return (
     <>
-      <nav>
-        <NavLink className="nav-link" to="/">
-          Home
-        </NavLink>
-        <NavLink className="nav-link" to="/movies">
-          Movies
-        </NavLink>
-      </nav>
+      <header>
+        <nav>
+          <NavLink className="nav-link" to="/">
+            Home
+          </NavLink>
+          <NavLink className="nav-link" to="/movies">
+            Movies
+          </NavLink>
+        </nav>
+      </header>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </>
   );
 };
+
+export default Layout;
