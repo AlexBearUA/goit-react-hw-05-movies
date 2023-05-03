@@ -16,9 +16,25 @@ async function getMovieById(id) {
   return data;
 }
 
+async function getMovieCredits(id) {
+  const data = await axios.get(
+    `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+  );
+  return data;
+}
+
+async function getMovieReviews(id) {
+  const data = await axios.get(
+    `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
+  );
+  return data;
+}
+
 const api = {
   getTrendMovies,
   getMovieById,
+  getMovieCredits,
+  getMovieReviews,
 };
 
 export default api;

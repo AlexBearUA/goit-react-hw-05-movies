@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div>
-      <p>Cписок фильмов в тренде</p>
+      <h1>The most popular of last week</h1>
       <ul>
         {trendMovies.map(({ id, title, poster_path }) => {
           return (

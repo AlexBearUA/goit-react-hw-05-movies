@@ -17,3 +17,9 @@ code {
 .nav-link {
   margin-right: 25px;
 }
+
+.actors-gallery {
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}

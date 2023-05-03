@@ -39,17 +39,17 @@ const MovieDetails = () => {
       <p>
         Genres:
         {genres &&
-          genres.reduce((resulString, genre) => {
-            return resulString + ' ' + genre.name;
+          genres.reduce((resultString, genre) => {
+            return resultString + ' ' + genre.name;
           }, '')}
       </p>
 
       <ul>
         <li>
-          <Link to="cast">Снимались</Link>
+          <Link to="cast">Cast</Link>
         </li>
         <li>
-          <Link to="reviews">Обзоры</Link>
+          <Link to="reviews">Reviews</Link>
         </li>
       </ul>
       <Suspense fallback={<div>Loading...</div>}>
