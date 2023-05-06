@@ -9,19 +9,9 @@ const Home = () => {
   useEffect(() => {
     moviesAPI
       .getTrendMovies()
-      .then(({ data: { results } }) =>
-        setTrendMovies(normalaziedMovies(results))
-      )
+      .then(movies => setTrendMovies(movies))
       .catch(error => console.log(error));
   }, []);
-
-  const normalaziedMovies = movies => {
-    return movies.map(({ id, title, poster_path }) => ({
-      id,
-      title,
-      poster_path,
-    }));
-  };
 
   return (
     <div>

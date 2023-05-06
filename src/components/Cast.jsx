@@ -9,23 +9,15 @@ const Cast = () => {
   useEffect(() => {
     moviesAPI
       .getMovieCredits(movieId)
-      .then(({ data: { cast } }) => setCredits(normalaziedCredits(cast)))
+      .then(credits => setCredits(credits))
       .catch(error => console.log(error));
   }, [movieId]);
 
-  const normalaziedCredits = credits => {
-    return credits.map(({ original_name, character, profile_path }) => ({
-      original_name,
-      character,
-      profile_path,
-    }));
-  };
-
   return (
     <ul className="actors-gallery">
-      {credits.map(({ original_name, character, profile_path }) => {
+      {credits.map(({ original_name, character, profile_path, credit_id }) => {
         return (
-          <li key={original_name}>
+          <li key={credit_id}>
             <img
               src={`https://image.tmdb.org/t/p/w300${profile_path}`}
               alt={original_name}

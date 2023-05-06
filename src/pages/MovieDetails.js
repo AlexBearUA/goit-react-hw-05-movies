@@ -14,17 +14,9 @@ const MovieDetails = () => {
   useEffect(() => {
     moviesAPI
       .getMovieById(movieId)
-      .then(({ data }) => setMovie(normalaziedMovie(data)))
+      .then(movie => setMovie(movie))
       .catch(error => console.log(error));
   }, [movieId]);
-
-  const normalaziedMovie = ({
-    original_title,
-    poster_path,
-    genres,
-    vote_average,
-    overview,
-  }) => ({ original_title, poster_path, genres, vote_average, overview });
 
   return (
     <>

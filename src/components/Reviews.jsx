@@ -9,21 +9,13 @@ const Reviews = () => {
   useEffect(() => {
     moviesAPI
       .getMovieReviews(movieId)
-      .then(({ data: { results } }) => setReviews(normalaziedReviews(results)))
+      .then(reviews => setReviews(reviews))
       .catch(error => console.log(error));
   }, [movieId]);
 
-  const normalaziedReviews = reviews => {
-    return reviews.map(({ author, content, id }) => ({
-      author,
-      content,
-      id,
-    }));
-  };
-
   return (
     <div>
-      {(reviews.length > 0 && (
+      {reviews.length > 0 && (
         <ul className="actors-gallery">
           {reviews.map(({ author, content, id }) => {
             return (
@@ -34,7 +26,8 @@ const Reviews = () => {
             );
           })}
         </ul>
-      )) || <p>We don't have any reviews for this movie</p>}
+      )}
+      {reviews.length === 0 && <p>We don't have any reviews for this movie</p>}
     </div>
   );
 };

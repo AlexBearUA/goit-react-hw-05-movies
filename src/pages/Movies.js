@@ -8,14 +8,6 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
 
-  const normalaziedMovies = movies => {
-    return movies.map(({ id, title, poster_path }) => ({
-      id,
-      title,
-      poster_path,
-    }));
-  };
-
   const onSearchSubmit = e => {
     e.preventDefault();
     const searchQuery = e.currentTarget.searchQuery.value.trim();
@@ -37,14 +29,14 @@ const Movies = () => {
     }
     moviesAPI
       .getMoviesByQuery(query)
-      .then(({ data: { results, total_results } }) => {
-        if (total_results === 0) {
+      .then(({ movies, totalResults }) => {
+        if (totalResults === 0) {
           toast.error('There are no movies on your searchquery');
           setSearchParams({});
           setMovies([]);
           return;
         }
-        setMovies(normalaziedMovies(results));
+        setMovies(movies);
       })
       .catch(error => console.log(error));
   }, [searchParams, setSearchParams]);
