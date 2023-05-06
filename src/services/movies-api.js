@@ -30,11 +30,18 @@ async function getMovieReviews(id) {
   return data;
 }
 
+async function getMoviesByQuery(query) {
+  const data = await axios.get(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${query}`
+  );
+  return data;
+}
 const api = {
   getTrendMovies,
   getMovieById,
   getMovieCredits,
   getMovieReviews,
+  getMoviesByQuery,
 };
 
 export default api;

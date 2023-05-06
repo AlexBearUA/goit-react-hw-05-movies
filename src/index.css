@@ -8,7 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+ul {
+  list-style: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -16,6 +18,12 @@ code {
 
 .nav-link {
   margin-right: 25px;
+}
+
+.movies-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .actors-gallery {

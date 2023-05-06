@@ -9,8 +9,8 @@ const Home = () => {
   useEffect(() => {
     moviesAPI
       .getTrendMovies()
-      .then(({ data: { results: movies } }) =>
-        setTrendMovies(normalaziedMovies(movies))
+      .then(({ data: { results } }) =>
+        setTrendMovies(normalaziedMovies(results))
       )
       .catch(error => console.log(error));
   }, []);
@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <div>
       <h1>The most popular of last week</h1>
-      <ul>
+      <ul className="movies-gallery">
         {trendMovies.map(({ id, title, poster_path }) => {
           return (
             <li key={id}>

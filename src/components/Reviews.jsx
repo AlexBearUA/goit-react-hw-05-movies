@@ -22,16 +22,20 @@ const Reviews = () => {
   };
 
   return (
-    <ul className="actors-gallery">
-      {reviews.map(({ author, content, id }) => {
-        return (
-          <li key={id}>
-            <p>{author}</p>
-            <p>{content}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      {(reviews.length > 0 && (
+        <ul className="actors-gallery">
+          {reviews.map(({ author, content, id }) => {
+            return (
+              <li key={id}>
+                <p>{author}</p>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )) || <p>We don't have any reviews for this movie</p>}
+    </div>
   );
 };
 
