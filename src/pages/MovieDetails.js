@@ -1,5 +1,6 @@
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { useEffect, useRef, Suspense, useState } from 'react';
+import { RotatingLines } from 'react-loader-spinner';
 import moviesAPI from '../services/movies-api';
 
 const MovieDetails = () => {
@@ -20,31 +21,56 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current}>Go back</Link>
-      <h2>{original_title}</h2>
-      <img
-        src={`https://image.tmdb.org/t/p/w300${poster_path}`}
-        alt={original_title}
-      />
-      <p>User score {vote_average}</p>
-      <p>Overview: {overview}</p>
-      <p>
-        Genres:
-        {genres &&
-          genres.reduce((resultString, genre) => {
-            return resultString + ' ' + genre.name;
-          }, '')}
-      </p>
+      <Link className="nav-link" to={backLinkLocationRef.current}>
+        Back to movies
+      </Link>
+      <h2 className="movie-title">{original_title}</h2>
+      <div className="movie-card">
+        <img
+          src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+          alt={original_title}
+        />
 
-      <ul>
+        <div className="movie-info">
+          <p>
+            <span className="details-item">User score: </span>
+            {Math.round(vote_average * 10)}%
+          </p>
+          <p>
+            <span className="details-item">Overview:</span> {overview}
+          </p>
+          <p>
+            <span className="details-item">Genres:</span>
+            {genres &&
+              genres.reduce((resultString, genre) => {
+                return resultString + ' ' + genre.name;
+              }, '')}
+          </p>
+        </div>
+      </div>
+      <ul className="movie-details">
         <li>
-          <Link to="cast">Cast</Link>
+          <Link className="movie-details-link" to="cast">
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link className="movie-details-link" to="reviews">
+            Reviews
+          </Link>
         </li>
       </ul>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <RotatingLines
+            strokeColor="#3f51b5"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          />
+        }
+      >
         <Outlet />
       </Suspense>
     </>

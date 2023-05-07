@@ -11,23 +11,177 @@ body {
 ul {
   list-style: none;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+.container {
+  padding: 0 45px;
+}
+
+.header {
+  padding: 25px 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 35px;
+  color: #3f51b5;
+}
 .nav-link {
+  display: inline-block;
   margin-right: 25px;
+  text-decoration: none;
+  background-color: #3f51b5;
+  color: aliceblue;
+  padding: 5px 25px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  &:hover {
+    background-color: aliceblue;
+    color: #3f51b5;
+    border: 1px solid #3f51b5;
+  }
+}
+
+.active {
+  background-color: aliceblue;
+  color: #3f51b5;
+  border: 1px solid #3f51b5;
+}
+
+.home-title {
+  color: #3f51b5;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 60px;
+  font-size: 40px;
 }
 
 .movies-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: space-between;
+}
+
+.movies-gallery-item {
+  width: 300px;
+  height: 500px;
+  margin-bottom: 45px;
+}
+
+.movies-gallery-link {
+  text-decoration: none;
+  color: #3f51b5;
+  text-align: center;
+  font-weight: bold;
+}
+
+.movies-gallery-link img {
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.search-form {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.search-btn {
+  background-color: #3f51b5;
+  color: aliceblue;
+  padding: 5px 25px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  margin-right: 30px;
+  &:hover {
+    background-color: aliceblue;
+    color: #3f51b5;
+    cursor: pointer;
+    border: 1px solid #3f51b5;
+  }
+}
+
+.search-input {
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #3f51b5;
+  padding-left: 10px;
+  outline: none;
+}
+
+.movie-title {
+  margin-top: 60px;
+  color: #3f51b5;
+}
+
+.movie-card {
+  display: flex;
+  gap: 60px;
+  font-size: 25px;
+}
+
+.movie-info {
+  width: 500px;
+}
+
+.movie-details {
+  display: flex;
+  gap: 45px;
+}
+.details-item {
+  font-weight: bold;
+}
+.movie-details-link {
+  text-decoration: none;
+  color: #3f51b5;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .actors-gallery {
-  gap: 20px;
+  width: 1620px;
+  gap: 30px;
+  padding: 50px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.actor-info {
+  text-align: center;
+  color: #3f51b5;
+}
+
+.actors-gallery-item {
+  margin-bottom: 50px;
+}
+
+.actors-gallery-item img {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  translate: 50% -50%;
+  color: #3f51b5;
 }

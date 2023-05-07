@@ -1,9 +1,10 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import { RotatingLines } from 'react-loader-spinner';
 const Layout = () => {
   return (
     <>
-      <header>
+      <header className="header">
         <nav>
           <NavLink className="nav-link" to="/">
             Home
@@ -12,11 +13,26 @@ const Layout = () => {
             Movies
           </NavLink>
         </nav>
+        <p className="logo">Simple Movies Service</p>
       </header>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
+        <div className="container">
+          <Suspense
+            fallback={
+              <div className="spinner">
+                <RotatingLines
+                  strokeColor="#3f51b5"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="200"
+                  visible={true}
+                />
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
+        </div>
       </main>
     </>
   );

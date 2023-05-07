@@ -43,22 +43,28 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={onSearchSubmit}>
-        <button type="submit">search</button>
+      <form className="search-form" onSubmit={onSearchSubmit}>
+        <button className="search-btn" type="submit">
+          search
+        </button>
         <input
+          className="search-input"
           type="text"
           name="searchQuery"
           autoFocus
-          placeholder="Search movies"
+          placeholder="Search movies..."
         />
       </form>
 
-      <p>{searchParams.get('query')}</p>
       <ul className="movies-gallery">
         {movies.map(({ id, title, poster_path }) => {
           return (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
+            <li className="movies-gallery-item" key={id}>
+              <Link
+                className="movies-gallery-link"
+                to={`/movies/${id}`}
+                state={{ from: location }}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w300${poster_path}`}
                   alt={title}
