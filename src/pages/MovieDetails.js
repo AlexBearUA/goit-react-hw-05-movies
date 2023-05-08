@@ -9,6 +9,7 @@ import { useEffect, useRef, Suspense, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import moviesAPI from '../services/movies-api';
 import noPoster from '../images/no_poster_cr.jpg';
+import { HiArrowLeft } from 'react-icons/hi';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -36,7 +37,7 @@ const MovieDetails = () => {
   return (
     <>
       <Link className="nav-link" to={backLinkLocationRef.current}>
-        Back to movies
+        <HiArrowLeft /> Go back
       </Link>
       <h2 className="movie-title">{original_title}</h2>
       <div className="movie-card">
