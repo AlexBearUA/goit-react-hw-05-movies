@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import moviesAPI from '../services/movies-api';
+import noPoster from '../images/no_poster_cr.jpg';
 
 const Home = () => {
   const location = useLocation();
@@ -26,7 +27,12 @@ const Home = () => {
                 state={{ from: location }}
               >
                 <img
-                  src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                  className="movies-gallery-img"
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                      : noPoster
+                  }
                   alt={title}
                 />
                 <p>{title}</p>

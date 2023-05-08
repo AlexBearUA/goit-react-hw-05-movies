@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import moviesAPI from '../services/movies-api';
+import noPoster from '../images/no_poster_cr.jpg';
 
 const Movies = () => {
   const location = useLocation();
@@ -66,7 +67,12 @@ const Movies = () => {
                 state={{ from: location }}
               >
                 <img
-                  src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+                  className="movies-gallery-img"
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                      : noPoster
+                  }
                   alt={title}
                 />
                 <p>{title}</p>

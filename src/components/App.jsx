@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageNotFound from '../pages/PageNotFound';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -22,7 +23,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-        <Route path="*" element={<div>Page not found</div>} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <ToastContainer autoClose={1500} />
     </>

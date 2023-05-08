@@ -29,6 +29,7 @@ async function getMovieById(id) {
   const { data } = await axios.get(
     `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos&language=en-US`
   );
+
   return normalaziedMovie(data);
 }
 

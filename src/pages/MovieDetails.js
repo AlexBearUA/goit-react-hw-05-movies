@@ -1,7 +1,14 @@
-import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  useLocation,
+  Link,
+  Outlet,
+  useNavigate,
+} from 'react-router-dom';
 import { useEffect, useRef, Suspense, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import moviesAPI from '../services/movies-api';
+import noPoster from '../images/no_poster_cr.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -12,12 +19,19 @@ const MovieDetails = () => {
     setMovie,
   ] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     moviesAPI
       .getMovieById(movieId)
-      .then(movie => setMovie(movie))
-      .catch(error => console.log(error));
-  }, [movieId]);
+      .then(movie => {
+        setMovie(movie);
+      })
+      .catch(error => {
+        error.response.status === 404 && navigate('*', { replace: false });
+        console.log(error);
+      });
+  }, [movieId, navigate]);
 
   return (
     <>
@@ -27,7 +41,11 @@ const MovieDetails = () => {
       <h2 className="movie-title">{original_title}</h2>
       <div className="movie-card">
         <img
-          src={`https://image.tmdb.org/t/p/w300${poster_path}`}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w300${poster_path}`
+              : noPoster
+          }
           alt={original_title}
         />
 
@@ -37,14 +55,16 @@ const MovieDetails = () => {
             {Math.round(vote_average * 10)}%
           </p>
           <p>
-            <span className="details-item">Overview:</span> {overview}
+            <span className="details-item">Overview: </span>
+            {overview ? overview : 'no information'}
           </p>
           <p>
-            <span className="details-item">Genres:</span>
-            {genres &&
-              genres.reduce((resultString, genre) => {
-                return resultString + ' ' + genre.name;
-              }, '')}
+            <span className="details-item">Genres: </span>
+            {genres && genres.length > 0
+              ? genres.reduce((resultString, genre) => {
+                  return resultString + ' ' + genre.name;
+                }, '')
+              : 'no information'}
           </p>
         </div>
       </div>

@@ -14,8 +14,8 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      {reviews.length > 0 && (
+    <>
+      {reviews.length > 0 ? (
         <ul className="actors-gallery">
           {reviews.map(({ author, content, id }) => {
             return (
@@ -26,9 +26,10 @@ const Reviews = () => {
             );
           })}
         </ul>
+      ) : (
+        <p className="no-info">We don't have any reviews for this movie</p>
       )}
-      {reviews.length === 0 && <p>We don't have any reviews for this movie</p>}
-    </div>
+    </>
   );
 };
 
